@@ -23,43 +23,48 @@ function operate(firstNum,operator,secondNum){
     }
 }
 
-// display selected number in line 2
-function displayCurrNum() {
-    line2.textContent = this.textContent;
+function getCurrNum() {
+    return line2.textContent;
 }
 
-function applyDisplayCurrNum() {
+function updateLine2(content) {
+    line2.textContent = content;
+}
+
+function onClickNumBtns() {
     numBtns.forEach(btn => {
-        btn.addEventListener('click', displayCurrNum)
+        btn.addEventListener('click', function(){
+            updateLine2(this.textContent);
+        })
     });
 }
 
-// on click operator buttons
-function clickOperBtns() {
-    firstNum = line2.textContent;
-    operator = this.textContent;
-    console.log(firstNum, operator)
+function saveOperator(btn) {
+    operator = btn.textContent;
 }
 
-function applyClickOperBtns() {
-    operBtns.forEach(btn => btn.addEventListener('click', clickOperBtns))
+function onClickOperBtns() {
+    operBtns.forEach(btn => btn.addEventListener('click', function(){
+        firstNum = getCurrNum();
+        saveOperator(btn);
+    }))
 }
 
-// on click equal buttons
-function clickEqualBtn() {
-    secondNum = line2.textContent;
-    let result = operate(firstNum, operator, secondNum);
-    console.log(result);
-    line2.textContent = result;
+function runOperation() {
+    return operate(firstNum, operator, secondNum);
 }
 
-function applyClickEqualBtn () {
-    equalBtn.addEventListener('click', clickEqualBtn)
+function onClickEqualBtn () {
+    equalBtn.addEventListener('click', function(){
+        secondNum = getCurrNum();
+        let result = runOperation();
+        updateLine2(result);
+    })
 }
 
 
 window.addEventListener('load', function() {
-    applyDisplayCurrNum();
-    applyClickOperBtns();
-    applyClickEqualBtn();
+    onClickNumBtns();
+    onClickOperBtns();
+    onClickEqualBtn();
 })
