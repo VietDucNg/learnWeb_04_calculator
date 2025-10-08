@@ -1,3 +1,6 @@
+const numBtns = document.querySelectorAll('.num');
+const line2 = document.querySelector('.line2');
+
 function add(a,b) {return a + b};
 function subtract(a,b) {return a - b};
 function multiply(a,b) {return a*b};
@@ -17,3 +20,18 @@ function operate(firstNum,operator,secondNum){
         case 'modulo': return modulo(firstNum,secondNum);
     }
 }
+
+// display selected number in line 2
+function displayCurrNum() {
+    line2.textContent = this.textContent;
+}
+
+function applyDisplayCurrNum() {
+    numBtns.forEach(btn => {
+        btn.addEventListener('click', displayCurrNum)
+    });
+}
+
+window.addEventListener('load', function() {
+    applyDisplayCurrNum();
+})
