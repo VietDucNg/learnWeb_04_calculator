@@ -45,7 +45,7 @@ function concatNumber(inputNum) {
     return Number(number);
 }
 
-function typeSecondNum(inputNum) {
+function inputSecondNum(inputNum) {
     updateScreen(0);
     return concatNumber(inputNum)
 }
@@ -54,7 +54,7 @@ function onClickNumBtns() {
     numBtns.forEach(btn => {
         btn.addEventListener('click', function(){
             if (isSecondNum()) {
-                let number = typeSecondNum(this.textContent); 
+                let number = inputSecondNum(this.textContent); 
                 updateScreen(number);
             } else {
                 let number = concatNumber(this.textContent)
@@ -86,16 +86,9 @@ function resetOperation() {
 function onClickEqualBtn () {
     equalBtn.addEventListener('click', function(){
         secondNum = getOnScreenNum();
-        let result = runOperation();
-        updateScreen(result);
+        updateScreen(runOperation());
         resetOperation();
     })
-}
-
-function clear() {
-    line1.textContent = ''
-    line2.textContent = '0'
-
 }
 
 
