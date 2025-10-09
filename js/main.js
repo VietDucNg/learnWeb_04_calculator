@@ -13,6 +13,7 @@ function modulo(a,b) {return a%b};
 let firstNum;
 let operator;
 let secondNum;
+let result;
 
 function operate(firstNum,operator,secondNum){
     switch(operator) {
@@ -55,11 +56,13 @@ function onClickNumBtns() {
     numBtns.forEach(btn => {
         btn.addEventListener('click', function(){
             if (isSecondNum()) {
-                let number = inputSecondNum(this.textContent); 
-                updateScreen(number);
+                let number = inputSecondNum(this.textContent);
+                secondNum = number;
+                updateScreen(secondNum);
             } else {
                 let number = concatNumber(this.textContent)
-                updateScreen(number);
+                firstNum = number;
+                updateScreen(firstNum);
             } 
         })
     });
@@ -71,12 +74,18 @@ function saveOperator(btn) {
 
 function onClickOperBtns() {
     operBtns.forEach(btn => btn.addEventListener('click', function(){
-        firstNum = getOnScreenNum();
-        saveOperator(btn);
+        if (secondNum) {
+            result = runOperation()
+            updateScreen(result);
+            resetOperation();
+        } else saveOperator(btn);
     }))
 }
 
 function runOperation() {
+    console.log(firstNum)
+    console.log(operator)
+    console.log(secondNum)
     return operate(firstNum, operator, secondNum);
 }
 
@@ -87,7 +96,8 @@ function resetOperation() {
 function onClickEqualBtn() {
     equalBtn.addEventListener('click', function(){
         secondNum = getOnScreenNum();
-        updateScreen(runOperation());
+        result = runOperation();
+        updateScreen(result);
         resetOperation();
     })
 }
