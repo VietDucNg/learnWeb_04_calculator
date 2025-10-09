@@ -1,6 +1,7 @@
 const numBtns = document.querySelectorAll('.num');
 const operBtns = document.querySelectorAll('.operator');
 const equalBtn = document.querySelector('.equalBtn');
+const acBtn = document.querySelector('.acBtn');
 const line2 = document.querySelector('.line2');
 
 function add(a,b) {return Number(a) + Number(b)};
@@ -83,7 +84,7 @@ function resetOperation() {
     operator = undefined;
 }
 
-function onClickEqualBtn () {
+function onClickEqualBtn() {
     equalBtn.addEventListener('click', function(){
         secondNum = getOnScreenNum();
         updateScreen(runOperation());
@@ -91,9 +92,20 @@ function onClickEqualBtn () {
     })
 }
 
+function clear() {
+    firstNum = undefined;
+    operator = undefined;
+    secondNum = undefined;
+    updateScreen(0);
+}
+
+function onClickAcBtn() {
+    acBtn.addEventListener('click', clear);
+}
 
 window.addEventListener('load', function() {
     onClickNumBtns();
     onClickOperBtns();
     onClickEqualBtn();
+    onClickAcBtn();
 })
