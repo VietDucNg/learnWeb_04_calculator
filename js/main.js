@@ -103,6 +103,7 @@ function onClickEqualBtn() {
         result = runOperation();
         updateScreen(result);
         resetOperation();
+        firstNum = result;
         secondNum = undefined;
     })
 }
