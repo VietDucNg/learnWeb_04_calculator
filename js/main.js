@@ -41,19 +41,17 @@ function isResultExist () {
     return (result) ? true : false;
 }
 
-function concatNumber(inputNum) {
-    let number;
-    if (getOnScreenNum() == 0) return inputNum;
+function concatNumber(number,inputNum) {
+    if (number == undefined) return inputNum;
     else {
-        let onScreenNum = String(getOnScreenNum());
-        number = onScreenNum + String(inputNum);
+        number = String(number) + String(inputNum);
     }
     return Number(number);
 }
 
 function inputSecondNum(inputNum) {
     updateScreen(0);
-    return concatNumber(inputNum)
+    return concatNumber(secondNum,inputNum)
 }
 
 function onClickNumBtns() {
@@ -67,7 +65,7 @@ function onClickNumBtns() {
                 secondNum = inputSecondNum(this.textContent);
                 updateScreen(secondNum);
             } else {
-                firstNum = concatNumber(this.textContent)
+                firstNum = concatNumber(firstNum,this.textContent)
                 updateScreen(firstNum);
             } 
         })
