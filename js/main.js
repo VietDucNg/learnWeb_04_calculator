@@ -100,10 +100,10 @@ function resetOperation() {
 
 function onClickEqualBtn() {
     equalBtn.addEventListener('click', function(){
-        secondNum = getOnScreenNum();
         result = runOperation();
         updateScreen(result);
         resetOperation();
+        secondNum = undefined;
     })
 }
 
