@@ -25,10 +25,6 @@ function operate(firstNum,operator,secondNum){
     }
 }
 
-function getOnScreenNum() {
-    return line2.textContent;
-}
-
 function updateScreen(content) {
     line2.textContent = content;
 }
