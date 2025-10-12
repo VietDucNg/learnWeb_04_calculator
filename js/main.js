@@ -33,8 +33,12 @@ function updateScreen(content) {
     line2.textContent = content;
 }
 
-function isSecondNum() {
+function isOperExist() {
     return (operator) ? true : false;
+}
+
+function isResultExist () {
+    return (result) ? true : false;
 }
 
 function concatNumber(inputNum) {
@@ -55,13 +59,15 @@ function inputSecondNum(inputNum) {
 function onClickNumBtns() {
     numBtns.forEach(btn => {
         btn.addEventListener('click', function(){
-            if (isSecondNum()) {
-                let number = inputSecondNum(this.textContent);
-                secondNum = number;
+            if (isOperExist()) {
+                secondNum = inputSecondNum(this.textContent);
+                updateScreen(secondNum);
+            } else if (isResultExist()) {
+                firstNum = result;
+                secondNum = inputSecondNum(this.textContent);
                 updateScreen(secondNum);
             } else {
-                let number = concatNumber(this.textContent)
-                firstNum = number;
+                firstNum = concatNumber(this.textContent)
                 updateScreen(firstNum);
             } 
         })
@@ -77,15 +83,14 @@ function onClickOperBtns() {
         if (secondNum) {
             result = runOperation()
             updateScreen(result);
-            resetOperation();
+            saveOperator(btn);
+            firstNum = result;
+            secondNum = undefined;
         } else saveOperator(btn);
     }))
 }
 
 function runOperation() {
-    console.log(firstNum)
-    console.log(operator)
-    console.log(secondNum)
     return operate(firstNum, operator, secondNum);
 }
 
@@ -106,6 +111,7 @@ function clear() {
     firstNum = undefined;
     operator = undefined;
     secondNum = undefined;
+    result = undefined;
     updateScreen(0);
 }
 
