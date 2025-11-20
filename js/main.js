@@ -35,14 +35,6 @@ function updateCurrentScreen(content) {
     currentScreen.textContent = content;
 }
 
-function isOperExist() {
-    return (operator) ? true : false;
-}
-
-function isResultExist () {
-    return (result) ? true : false;
-}
-
 function concatNumber(number,inputNum) {
     if (number == undefined) return inputNum;
     else {
@@ -56,78 +48,60 @@ function inputSecondNum(inputNum) {
     return concatNumber(secondNum,inputNum)
 }
 
-function onClickNumBtns() {
-    numBtns.forEach(btn => {
-        btn.addEventListener('click', function(){
-            if (isOperExist()) {
-                secondNum = inputSecondNum(this.textContent);
-                updateCurrentScreen(secondNum);
-            } else if (isResultExist()) {
-                firstNum = result;
-                secondNum = inputSecondNum(this.textContent);
-                updateCurrentScreen(secondNum);
-            } else {
-                firstNum = concatNumber(firstNum,this.textContent)
-                updateCurrentScreen(firstNum);
-            } 
-        })
-    });
-}
+numBtns.forEach(btn => {
+    btn.addEventListener('click', function(){
+        if (operator) {
+            secondNum = inputSecondNum(this.textContent);
+            updateCurrentScreen(secondNum);
+        } else if (result) {
+            firstNum = result;
+            secondNum = inputSecondNum(this.textContent);
+            updateCurrentScreen(secondNum);
+        } else {
+            firstNum = concatNumber(firstNum,this.textContent)
+            updateCurrentScreen(firstNum);
+        } 
+    })
+});
 
 function saveOperator(btn) {
     operator = btn.textContent;
 }
 
-function onClickOperBtns() {
-    operBtns.forEach(btn => btn.addEventListener('click', function(){
-        if (secondNum) {
-            result = runOperation()
-            updateCurrentScreen(result);
-            saveOperator(btn);
-            firstNum = result;
-            secondNum = undefined;
-            updateLastScreen();
-        } else {
-            saveOperator(btn);
-            updateLastScreen();
-        }
-    }))
-}
+operBtns.forEach(btn => btn.addEventListener('click', function(){
+    if (secondNum) {
+        result = runOperation()
+        updateCurrentScreen(result);
+        saveOperator(btn);
+        firstNum = result;
+        secondNum = undefined;
+        updateLastScreen();
+    } else {
+        saveOperator(btn);
+        updateLastScreen();
+    }
+}));
 
 function runOperation() {
     return operate(firstNum, operator, secondNum);
 }
 
-function resetOperation() {
+equalBtn.addEventListener('click', function(){
+    result = runOperation();
+    lastScreen.textContent = `${firstNum} ${operator} ${secondNum} =`;
+    updateCurrentScreen(result);
     operator = undefined;
-}
-
-function onClickEqualBtn() {
-    equalBtn.addEventListener('click', function(){
-        result = runOperation();
-        lastScreen.textContent = `${firstNum} ${operator} ${secondNum} =`;
-        updateCurrentScreen(result);
-        resetOperation();
-        firstNum = result;
-        secondNum = undefined;
-    })
-}
+    firstNum = result;
+    secondNum = undefined;
+});
 
 function clear() {
     firstNum = undefined;
     operator = undefined;
     secondNum = undefined;
     result = undefined;
+    lastScreen.textContent=''
     updateCurrentScreen(0);
 }
 
-function onClickAcBtn() {
-    acBtn.addEventListener('click', clear);
-}
-
-window.addEventListener('load', function() {
-    onClickNumBtns();
-    onClickOperBtns();
-    onClickEqualBtn();
-    onClickAcBtn();
-})
+acBtn.addEventListener('click', clear);
