@@ -104,7 +104,6 @@ equalBtn.addEventListener('click', function(){
 function deleteNum() {
     currentScreen.textContent = currentScreen.textContent.toString().slice(0,-1)
 };
-
 cBtn.addEventListener('click', deleteNum);
 
 function clear() {
@@ -115,5 +114,4 @@ function clear() {
     lastScreen.textContent=''
     updateCurrentScreen(0);
 }
-
 acBtn.addEventListener('click', clear);
