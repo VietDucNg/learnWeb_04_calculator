@@ -1,6 +1,7 @@
 const numBtns = document.querySelectorAll('.num');
 const operBtns = document.querySelectorAll('.operator');
 const equalBtn = document.querySelector('.equalBtn');
+const cBtn = document.querySelector('.cBtn');
 const acBtn = document.querySelector('.acBtn');
 const lastScreen = document.querySelector('.lastScreen');
 const currentScreen = document.querySelector('.currentScreen');
@@ -27,7 +28,7 @@ function operate(firstNum,operator,secondNum){
 }
 
 function updateLastScreen(){
-    if (result) lastScreen.textContent = `${result} ${operator}`;
+    if (firstNum) lastScreen.textContent = `${firstNum} ${operator}`;
     else lastScreen.textContent = `${firstNum} ${operator}`;
 }
 
@@ -78,22 +79,33 @@ operBtns.forEach(btn => btn.addEventListener('click', function(){
         updateLastScreen();
     } else {
         saveOperator(btn);
+        firstNum = Number(currentScreen.textContent);
         updateLastScreen();
     }
 }));
 
 function runOperation() {
+    if (!secondNum) secondNum = currentScreen.textContent;
     return operate(firstNum, operator, secondNum);
 }
 
 equalBtn.addEventListener('click', function(){
-    result = runOperation();
-    lastScreen.textContent = `${firstNum} ${operator} ${secondNum} =`;
-    updateCurrentScreen(result);
-    operator = undefined;
-    firstNum = result;
-    secondNum = undefined;
+    if (!operator) return;
+    else {
+        result = runOperation();
+        lastScreen.textContent = `${firstNum} ${operator} ${secondNum} =`;
+        updateCurrentScreen(result);
+        operator = undefined;
+        firstNum = result;
+        secondNum = undefined;
+    }
 });
+
+function deleteNum() {
+    currentScreen.textContent = currentScreen.textContent.toString().slice(0,-1)
+};
+
+cBtn.addEventListener('click', deleteNum);
 
 function clear() {
     firstNum = undefined;
