@@ -26,6 +26,10 @@ function operate(firstNum,operator,secondNum){
     }
 }
 
+function updateLastScreen(){
+    if (result) lastScreen.textContent = `${result} ${operator}`;
+    else lastScreen.textContent = `${firstNum} ${operator}`;
+}
 
 function updateCurrentScreen(content) {
     currentScreen.textContent = content;
@@ -82,7 +86,11 @@ function onClickOperBtns() {
             saveOperator(btn);
             firstNum = result;
             secondNum = undefined;
-        } else saveOperator(btn);
+            updateLastScreen();
+        } else {
+            saveOperator(btn);
+            updateLastScreen();
+        }
     }))
 }
 
@@ -97,6 +105,7 @@ function resetOperation() {
 function onClickEqualBtn() {
     equalBtn.addEventListener('click', function(){
         result = runOperation();
+        lastScreen.textContent = `${firstNum} ${operator} ${secondNum} =`;
         updateCurrentScreen(result);
         resetOperation();
         firstNum = result;
