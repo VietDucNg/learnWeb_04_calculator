@@ -2,7 +2,8 @@ const numBtns = document.querySelectorAll('.num');
 const operBtns = document.querySelectorAll('.operator');
 const equalBtn = document.querySelector('.equalBtn');
 const acBtn = document.querySelector('.acBtn');
-const line2 = document.querySelector('.line2');
+const lastScreen = document.querySelector('.lastScreen');
+const currentScreen = document.querySelector('.currentScreen');
 
 function add(a,b) {return Number(a) + Number(b)};
 function subtract(a,b) {return a - b};
@@ -25,8 +26,9 @@ function operate(firstNum,operator,secondNum){
     }
 }
 
-function updateScreen(content) {
-    line2.textContent = content;
+
+function updateCurrentScreen(content) {
+    currentScreen.textContent = content;
 }
 
 function isOperExist() {
@@ -46,7 +48,7 @@ function concatNumber(number,inputNum) {
 }
 
 function inputSecondNum(inputNum) {
-    updateScreen(0);
+    updateCurrentScreen(0);
     return concatNumber(secondNum,inputNum)
 }
 
@@ -55,14 +57,14 @@ function onClickNumBtns() {
         btn.addEventListener('click', function(){
             if (isOperExist()) {
                 secondNum = inputSecondNum(this.textContent);
-                updateScreen(secondNum);
+                updateCurrentScreen(secondNum);
             } else if (isResultExist()) {
                 firstNum = result;
                 secondNum = inputSecondNum(this.textContent);
-                updateScreen(secondNum);
+                updateCurrentScreen(secondNum);
             } else {
                 firstNum = concatNumber(firstNum,this.textContent)
-                updateScreen(firstNum);
+                updateCurrentScreen(firstNum);
             } 
         })
     });
@@ -76,7 +78,7 @@ function onClickOperBtns() {
     operBtns.forEach(btn => btn.addEventListener('click', function(){
         if (secondNum) {
             result = runOperation()
-            updateScreen(result);
+            updateCurrentScreen(result);
             saveOperator(btn);
             firstNum = result;
             secondNum = undefined;
@@ -95,7 +97,7 @@ function resetOperation() {
 function onClickEqualBtn() {
     equalBtn.addEventListener('click', function(){
         result = runOperation();
-        updateScreen(result);
+        updateCurrentScreen(result);
         resetOperation();
         firstNum = result;
         secondNum = undefined;
@@ -107,7 +109,7 @@ function clear() {
     operator = undefined;
     secondNum = undefined;
     result = undefined;
-    updateScreen(0);
+    updateCurrentScreen(0);
 }
 
 function onClickAcBtn() {
