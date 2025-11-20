@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title></title>
+    <title>Calculator</title>
     <!-- link my css -->
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/backbone.css" />
@@ -13,34 +13,73 @@
     <script type="module" src="js/main.js"></script>
   </head>
   <body class="column">
-    <div class="display column">
-      <p class="lastScreen"></p>
-      <p class="currentScreen">0</p>
-    </div>
-    <div class="buttons">
-      <button class="acBtn">AC</button>
-      <button class="cBtn">C</button>
-      <button class="moduloBtn operator">%</button>
-      <button class="divideBtn operator">÷</button>
-      <button class="7Btn num">7</button>
-      <button class="8Btn num">8</button>
-      <button class="9Btn num">9</button>
-      <button class="xBtn operator">x</button>
-      <button class="4Btn num">4</button>
-      <button class="5Btn num">5</button>
-      <button class="6Btn num">6</button>
-      <button class="subtractBtn operator">-</button>
-      <div class="lastButtons">
-        <div class="lastLeftButtons">
-          <button class="1Btn num">1</button>
-          <button class="2Btn num">2</button>
-          <button class="3Btn num">3</button>
-          <button class="0Btn num">0</button>
-          <!-- <button class="dotBtn">.</button> -->
-          <button class="equalBtn">=</button>
-        </div>
-        <button class="addBtn operator">+</button>
-      </div>
-    </div>
+    <main class="row">
+      <section class="calculator column">
+        <header class="row">
+          <section class="title">
+            <p>Casio</p>
+            <p>HS-4G</p>
+          </section>
+          <section class="baterries">
+            <section></section>
+            <section></section>
+            <section></section>
+          </section>
+        </header>
+        <section class="displayDiv">
+          <section class="display column">
+          <p class="lastScreen"></p>
+          <p class="currentScreen">0</p>
+        </section>
+        </section>
+        <article class="buttons column">
+          <section>
+            <button class="acBtn">AC</button>
+            <button class="cBtn">C</button>
+            <button class="moduloBtn operator">%</button>
+            <button class="divideBtn operator">÷</button>
+          </section>
+          <section>
+            <button class="7Btn num">7</button>
+            <button class="8Btn num">8</button>
+            <button class="9Btn num">9</button>
+            <button class="xBtn operator">x</button>
+          </section>
+          <section>
+            <button class="4Btn num">4</button>
+            <button class="5Btn num">5</button>
+            <button class="6Btn num">6</button>
+            <button class="subtractBtn operator">-</button>
+          </section>
+          <section class="lastRows row">
+            <section class="lastRows-left column">
+              <section>
+                <button class="1Btn num">1</button>
+                <button class="2Btn num">2</button>
+                <button class="3Btn num">3</button>
+              </section>
+              <section class="equalBtnDiv row">
+                <button class="0Btn num">0</button>
+                <button class="equalBtn">=</button>
+              </section>
+            </section>
+            <section class="row">
+              <button class="addBtn operator">+</button>
+            </section>
+        </article>
+      </section>
+    </main>
+    <footer class="footer row">
+      <p>
+        Copyright ©
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://vietducng.github.io/"
+          >Viet Nguyen</a
+        >
+        2025
+      </p>
+    </footer>
   </body>
 </html>

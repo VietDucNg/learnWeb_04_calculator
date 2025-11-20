@@ -14,10 +14,78 @@ html {
     font-size: 25px;
 }
 
-/* body */
+body {
+    align-items: center;
+}
 
-/* style header */
+main {
+    flex: 1;
+    align-items: center;
+}
 
-/* style block 1 */
+.calculator {
+    border: 3px solid rgba(213, 209, 224);
+    border-radius: 10px;
+    gap: 20px;
+    padding: 20px;
+}
 
-/* style footer */
+header {
+    justify-content: space-between;
+}
+
+.baterries {
+    min-width: 100px;
+    border: 1px solid rebeccapurple;
+}
+
+.displayDiv {
+    border: 2px solid rgba(138, 140, 152);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.display {
+    border: 2px solid rgba(181, 187, 178);
+    min-height: 85px;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.lastScreen {
+    font-size: 20px;
+}
+
+.currentScreen {
+    font-weight: bold;
+}
+
+.buttons {
+    gap: 10px;
+}
+
+.buttons *:not(section) {
+    border: 2px solid rgba(81, 82, 103);
+    border-radius: 5px;
+    min-width: 50px;
+    min-height: 40px;
+}
+
+.lastRows {
+    gap: 7px;
+}
+
+.lastRows-left {
+    gap: 10px;
+}
+
+.equalBtnDiv {
+    gap: 6px;
+}
+
+.equalBtn {
+    flex: 1;
+}
+
